@@ -1,25 +1,58 @@
-import React from 'react'
+import React, { useState } from "react";
+import "../index.css";
+import RightBar from "./UI/RightBar";
 
 const Home = () => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen((prev) => !prev);
+  };
+
   return (
     <>
-    <nav className='w-full h-20 bg-white border-b-2 border-b-gray-200'>
-
-    </nav>
-    <div className="grid grid-cols-3 gap-4 ">
-      {/* SlideBar */}
-      <div class="py-16 text-center ">
-        <button type="button" class="py-2 px-3 inline-flex justify-center items-center gap-x-2 text-start bg-gray-800 border border-gray-800 text-white text-sm font-medium rounded-lg shadow-sm align-middle hover:bg-gray-950 focus:outline-none focus:bg-gray-900 dark:bg-white dark:text-neutral-800 dark:hover:bg-neutral-200 dark:focus:bg-neutral-200" aria-haspopup="dialog" aria-expanded="false" aria-controls="hs-offcanvas-example" aria-label="Toggle navigation" data-hs-overlay="#hs-offcanvas-example">
-          Open
+      {/* Navbar */}
+      <nav className="w-full h-20 bg-white border-b-2 border-b-gray-200 flex items-center px-4 lg:justify-between">
+        {/* Brand Name */}
+        <h1
+          className={`text-xl font-bold text-primary-500 ${
+            isSidebarOpen ? "hidden" : "block"
+          } lg:block`}
+        >
+          Takeey
+        </h1>
+        {/* Sidebar Toggle Button */}
+        <button
+          onClick={toggleSidebar}
+          className="lg:hidden p-2 bg-gray-100 rounded-full shadow hover:bg-gray-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6 text-gray-700"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth="2"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16m-7 6h7" />
+          </svg>
         </button>
-      </div>
+      </nav>
 
-      <div id="hs-offcanvas-example" class="hs-overlay [--auto-close:lg] hs-overlay-open:translate-x-0 -translate-x-full transition-all duration-300 transform hidden fixed top-0 start-0 bottom-0 z-[60] w-64 bg-white border-r-2 border-r-gray-200 pt-7 pb-10 overflow-y-auto lg:block lg:translate-x-0 lg:end-auto lg:bottom-0 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 dark:bg-white dark:border-neutral-700" role="dialog" tabindex="-1" aria-label="Sidebar">
+      <div className="flex w-full">
+        {/* Sidebar */}
+        <div
+          className={`fixed top-0 left-0 h-full w-64 bg-white border-r-2 border-gray-200 pt-7 pb-10 overflow-y-auto z-[60] transform transition-transform duration-300 ${
+            isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+          } lg:relative lg:translate-x-0 lg:block`}
+        >
+          {/* Brand Name Inside Sidebar */}
+          <div className="px-6">
+            <h1 className="text-xl text-primary-500 font-bold lg:hidden mb-4">Takeey</h1>
+          </div>
 
-        <div class="px-6">
-          <a class="flex-none font-semibold text-xl text-black focus:outline-none focus:opacity-80 dark:text-primary-500" href="#" aria-label="Brand">Takeey</a>
-        </div>
-        <nav class="hs-accordion-group p-6 w-full flex flex-col flex-wrap" data-hs-accordion-always-open>
+          {/* Sidebar Navigation */}
+          <nav class="hs-accordion-group p-6 w-full flex flex-col flex-wrap" data-hs-accordion-always-open>
           <ul class="space-y-1.5">
             <li>
               <a class="flex items-center gap-x-3.5 py-2 px-2.5 bg-gray-100 text-sm text-gray-700 rounded-lg hover:bg-gray-400 dark:bg-primary-400 dark:text-white" href="#">
@@ -100,7 +133,7 @@ const Home = () => {
             </li>
 
             <li class="hs-accordion" id="projects-accordion">
-              <button type="button" class="w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 text-sm rounded-lg hover:bg-gray-100 focus:outline-none  hs-accordion-toggle hs-accordion-active:bg-primary-400 hs-accordion-active:text-white hs-accordion-active:hover:bg-primary-400 text-gray-700 dark:text-black-400dark:hover:text-neutral-800 dark:hover:bg-gray-200   dark:hs-accordion-active:bg-primary-400 dark:hs-accordion-active:text-white" aria-expanded="true" aria-controls="projects-accordion">
+              <button type="button" class="w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 text-sm rounded-lg hover:bg-gray-100 focus:outline-none  hs-accordion-toggle hs-accordion-active:bg-primary-400 hs-accordion-active:text-white hs-accordion-active:hover:bg-primary-400 text-gray-700 dark:text-black-400 dark:hover:text-neutral-800 dark:hover:bg-gray-200   dark:hs-accordion-active:bg-primary-400 dark:hs-accordion-active:text-white" aria-expanded="true" aria-controls="projects-accordion">
                 <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" />
                   <polyline points="14 2 14 8 20 8" />
@@ -202,20 +235,40 @@ const Home = () => {
 
           </ul>
         </nav>
+        </div>
+
+        {/* Main Content */}
+        <main
+          className={`flex-1 p-6 transition-all duration-300  ${
+            isSidebarOpen ? "ml-64" : "ml-0"
+          }`}
+        >
+          <h2 className="text-2xl font-bold">Main Content</h2>
+          <p>This is the main content area. Add your content here.</p>
+        </main>
+
+        {/* Right Bar */}
+        <div
+  className="hidden lg:block lg:w-1/3 p-6 bg-gray-50 shadow-lg border-l-2 border-gray-300 "
+  style={{
+    height: "calc(100vh - 5rem)",
+    overflowY: "auto", // Enable scrolling if the content overflows
+  }}
+>
+  <RightBar />
+</div>
+
       </div>
 
-      <div className='' id='contents'>
-        dsdsjdsjdd
-      </div>
-
-      <div className='w-72 h-screen border-l-2 border-l-gray-200 bg-white  mx-20' id='righthand-bar'>righthand bar</div>
-
-
-      <script src="../scripts/js/open-modals-on-init.js"></script>
-    </div>
-
+      {/* Overlay for Mobile */}
+      {isSidebarOpen && (
+        <div
+          onClick={toggleSidebar}
+          className="fixed inset-0 bg-black bg-opacity-50 z-[50] lg:hidden"
+        ></div>
+      )}
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
